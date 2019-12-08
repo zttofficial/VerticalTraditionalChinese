@@ -1,19 +1,13 @@
 #-*- encoding:utf-8 -*-
 import re
 
-def directTest(text):
-    str = []
-    for i in text:
-        str.append(i)
-        print(i)
-
+#only available when all characters are Chinese now
 def transfer(text):
     pattern = r',|\.|/|;|\'|`|\[|\]|<|>|\?|:|"|\{|\}|\~|!|@|#|\$|%|\^|&|\(|\)|-|=|\_|\+|，|？|。|、|；|‘|’|【|】|·|！| |…|（|）'
     split = re.split(pattern,text)
     split.reverse()
     lens = len(split)
-    lines = len(max(split)) #len cannot get correct result for Chinese character 
-    print(lines)
+    lines = len(max(split, key=len))
     space = []
     for a in split:
         d = lines - len(a)
@@ -28,7 +22,6 @@ def transfer(text):
     print(s)
 
 if __name__ == "__main__":        
-    #text = input("Text:")
-    text = "小陳同學，你好"
+    text = input("Text:")
     transfer(text)
 
